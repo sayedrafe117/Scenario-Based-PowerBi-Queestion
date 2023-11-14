@@ -1,0 +1,30 @@
+Q1. Sum of Sales By Age Group.
+Ans: The Age Group is present in the Emplyee table. If you make a bar chart using age group and sum of sales it will not sort properly.For that this steps need to be taken.
+      1. Go to Transform data
+      2. Make a new conditional Column and use that conditional column to sort the age group.
+You can visualze it in the given powerbi file
+
+Q2. Find the year to date sales till today 
+Ans: Remeber for any time inteliggence answer always try to create the date table. It will really help with the analysis. For this case we have also created a date table and then created a new measure to calculate YTD.
+     YTD Sales = CALCULATE(TOTALYTD(SUM(Sales[Sales]),'Date Table'[Date]),'Date Table'[Date]<=TODAY())
+Verifycation has also given in the powebi file
+
+Q3. Create a monthly trend chart for sales. The sequence of month in chart should be as per the united sates financial year which starts at october
+Ans: For this there are two approaches. 
+     1. One you can create your own conditional column in date table or another approcah
+     2. Extract the month number from the date table then use another column Fiscal Month = IF('Date Table'[Month num]>9,'Date Table'[Month num]-9,'Date Table'[Month num]+3)
+Then sort the month column based on Fiscal Month.
+
+Q4. Create a grid view with Year Of Order Date, category, Sales, Profit and Quantity ,add a year wise slicer to filter the data. 
+    Add a dynamic title to the view so that whenever a slicer is operated the title should show the filter value whichever user selected.
+Ans: It was easy one but the only problem is the title. For the title you can create this Dynamic Measure
+     Dynamic Title = "Sales for Year " & SELECTEDVALUE('Date Table'[Year])
+
+Q5. Create a bar chart using saubcategory and sum of sales.
+    Add a Green Colour to the subcategory bars if sum of sales are greater then 150000 and red color if sum of sales are less then 150000.
+Ans: This was also easy only you need to create a measure for the color. 
+     Dynamic Color = IF(SUM(Sales[Sales]) > 150000,"Green","Red")
+
+All the question and answers are provided in the powerbi file, Please check it. 
+
+     
